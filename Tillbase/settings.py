@@ -1,3 +1,5 @@
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_URL = '/static/'
 INSTALLED_APPS = [
     'bootstrap4',
@@ -14,7 +16,8 @@ INSTALLED_APPS = [
 
 
 DEBUG = True
-LOGIN_REDIRECT_URL = '/dashboard/'  # This is the URL to redirect to after login
+LOGIN_REDIRECT_URL = '/dashboard/'  
+LOGIN_URL = '/login/' 
 ROOT_URLCONF = 'Tillbase.urls'
 SECRET_KEY = 'k*oz=3!08d!bb14z-&6i!6yl9*^+^+@!75vx2@iv-v7m*i7fy&'
 MIDDLEWARE = [
@@ -43,14 +46,13 @@ TEMPLATES = [
     },
 ]
 
-
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tillbase',
-        'ENFORCE_SCHEMA': True,
-        'CLIENT': {
-            'host': 'mongodb+srv://jesse:kimani@tillbase.zg83hlp.mongodb.net/?retryWrites=true&w=majority&appName=tillbase'
-        }
+        'USER': 'jesse',
+        'PASSWORD': 'pass',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }

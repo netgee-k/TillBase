@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 col-lg-2 bg-dark text-white p-3">
+            <h4 class="text-center">TillBase POS</h4>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">
+                        <i class="fas fa-cash-register"></i> POS Interface
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">
+                        <i class="fas fa-box"></i> Manage Products
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">
+                        <i class="fas fa-chart-line"></i> Sales Report
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">
+                        <i class="fas fa-users"></i> Customer Management
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">
+                        <i class="fas fa-cogs"></i> Settings
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'logout' %}">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="col-md-9 col-lg-10 p-4">
+            <h1>Welcome to TillBase POS, {{ user.username }}!</h1>
+            <div class="row">
+                <!-- Total Sales Card -->
+                <div class="col-md-4">
+                    <div class="card text-white bg-success mb-3">
+                        <div class="card-header">Total Sales</div>
+                        <div class="card-body">
+                            <h5 class="card-title">${{ total_sales }}</h5>
+                            <p class="card-text">Total sales made this month.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Total Items Sold Card -->
+                <div class="col-md-4">
+                    <div class="card text-white bg-primary mb-3">
+                        <div class="card-header">Items Sold</div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ items_sold }}</h5>
+                            <p class="card-text">Total items sold this month.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Active Customers Card -->
+                <div class="col-md-4">
+                    <div class="card text-white bg-info mb-3">
+                        <div class="card-header">Active Customers</div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ active_customers }}</h5>
+                            <p class="card-text">Number of active customers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Access to POS Features -->
+            <div class="row">
+                <!-- Quick Add Product -->
+                <div class="col-md-6">
+                    <a href="{% url 'add_product' %}" class="btn btn-primary btn-block mb-3">
+                        <i class="fas fa-plus-circle"></i> Add New Product
+                    </a>
+                </div>
+                <!-- Manage Sales -->
+                <div class="col-md-6">
+                    <a href="{% url 'manage_sales' %}" class="btn btn-secondary btn-block mb-3">
+                        <i class="fas fa-edit"></i> Manage Sales
+                    </a>
+                </div>
+            </div>
+
+            <!-- Checkout/Order Management -->
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="{% url 'pos_checkout' %}" class="btn btn-success btn-block mb-3">
+                        <i class="fas fa-cash-register"></i> Start Checkout
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="{% url 'view_orders' %}" class="btn btn-warning btn-block mb-3">
+                        <i class="fas fa-list-ul"></i> View Orders
+                    </a>
+                </div>
+            </div>
+
+            <!-- Sales Stats Overview -->
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Sales Statistics</h2>
+                    <div class="chart-container">
+                        <!-- Example: Chart.js integration could go here -->
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

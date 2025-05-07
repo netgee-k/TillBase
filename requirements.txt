@@ -1,0 +1,17 @@
+asgiref
+beautifulsoup4
+blinker
+click
+Django
+django-bootstrap4
+djongo
+dnspython
+itsdangerous
+Jinja2
+MarkupSafe
+pymongo
+pytz
+soupsieve
+sqlparse
+typing_extensions
+Werkzeug
